@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@300;400;700&display=swap');
+
+$gray: #303633;       /* rgb(48,54,51) */
+$lightGray: #f2f2f2;
+$green: #8bebcb;      /* rgb(139, 232, 203)  */
+$pink: #9c7a97;       /* rgb(156, 122, 151) */
+$white: #fff;
+$headings: 'Source Sans Pro', sans-serif;
+$text: 'Lato', sans-serif;
+$transition: .3s ease;
+
+/*************
+Mixins
+*************/
+@mixin btn {
+    border: 2px solid $green;
+    background-color: transparent;
+    color: $green;
+    padding: 10px 40px;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+@mixin btn-hover {
+    border: 2px solid $gray;
+    color: $gray;
+    transition: $transition;
+    cursor: pointer;
+}
+
+@mixin line {
+    display: block;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-color: $lightGray;
+    margin: 50px 0 20px 0;
+}
+
+/*************
+Basic styles
+*************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: $text;
+    color: $gray;
+    display: flex;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: $headings;
+}
+
+.headings {
+    font-size: 2.5rem;
+}
+
+.headings::after {
+    display: block;
+    content: "";
+    height: 2px;
+    width: 80px;
+    background-color: $pink;
+    margin: 20px 0 30px 0;
+}
+
+/*************
+Aside
+*************/
+aside {
+    flex: 1;
+    background-image:linear-gradient(rgba(48,54,51,.9),rgba(156, 122, 151,.9)),url(img/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 60px;
+    img {
+        width: 40%;
+        border-radius: 50%;
+        border: 5px solid $pink;
+        margin-bottom: 30px;
+    }
+    h1 {
+        color: $white;
+        text-align: right;
+        font-weight: 300;
+        padding-bottom: 30px;
+        span {
+            color: $green;
+            font-weight: 700;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+    }
+    a {
+        color: $green;
+        font-size: 2rem;
+        margin-left: 20px;
+        &:hover {
+            color: $lightGray;
+            transition: $transition;
+        }
+    }
+}
+
+/*************
+Main
+*************/
+.main {
+    flex: 2;
+    height: 100vh;
+    overflow: scroll;
+    padding: 40px;
+    /*** About ***/
+    .about {
+        button {
+            @include btn;
+            &:hover {
+                @include btn-hover;
+            }
+        }
+        &::after {
+            @include line;
+        }
+    }
+    /*** Portfolio ***/
+    .portfolio {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .col {
+                flex: 0 0 48%;
+                @media(max-width:768px) {
+                    flex: 0 0 100%;
+                }
+                margin-top: 40px;
+                img {
+                    width: 100%;
+                    height: auto;
+                    &:hover {
+                        opacity: .6;
+                        transition: $transition;
+                        transform: scale(1.1);
+                    }
+                }
+                h3 {
+                    color: $pink;
+                    font-size: 1.7rem;
+                }
+            }
+            button {
+                @include btn;
+                margin-top: 30px;
+                &:hover {
+                    @include btn-hover;
+                }
+            }
+        }
+        &::after {
+            @include line;
+        }
+    }
+    
+    /*** Footer ***/
+    footer {
+        padding-bottom: 40px;
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            form {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-right: 50px;
+                margin-top: 20px;
+                flex: 2;
+                @media(max-width:768px) {
+                    flex: 0 0 100%;
+                    padding-right: 0;;
+                }
+                input {
+                    padding: 10px;
+                    background-color: $lightGray;
+                    border: none;
+                    flex: 0 0 48%;
+                    @media(max-width:768px) {
+                        flex: 0 0 100%;
+                    }
+                    margin-bottom: 10px;
+                }
+                textarea {
+                    padding: 10px;
+                    flex: 0 0 100%;
+                    border: none;
+                    background-color: $lightGray;
+                    margin-bottom: 30px;
+                }
+                button {
+                    @include btn;
+                    margin-top: 0px;
+                    background-color: $pink;
+                    color: $white;
+                    border: 2px solid $pink;
+                    &:hover {
+                        @include btn-hover;
+                        background-color: $green;
+                        border: 2px solid $green;
+                        color: $white;
+                    }
+                }
+            }
+            .contact {
+                flex: 1;
+                @media(max-width:768px) {
+                    flex: 0 0 100%;
+                }
+                ul {
+                    list-style: none;
+                    padding-left: 20px;
+                    @media(max-width:768px) {
+                        padding-left: 0;
+                        padding: 10px;
+                    }
+                    line-height: 2.5;
+                    li {
+                        font-size: 1.2rem;
+                        i {
+                            color: $pink;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}
+
+/*************
+Responsive
+*************/
+@media(max-width:768px) {
+    body {
+        flex-wrap: wrap;
+    }
+    
+    aside {
+        flex: 0 0 100%;
+        text-align: center;
+        align-items: center;
+        padding-right: 0px;
+        height: 90vh;
+    }
+    
+    .main {
+        flex: 0 0 100%;
+        overflow: auto;
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
